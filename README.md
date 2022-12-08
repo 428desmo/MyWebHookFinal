@@ -34,26 +34,26 @@ Open 3 terminals.
 
 In terminal 1:
 ```
-cd MyWebHookFinal
-ruby WebHookReceiver.rb -p 4567 -o 0.0.0.0
+% cd MyWebHookFinal
+% ruby WebHookReceiver.rb -p 4567 -o 0.0.0.0
 ```
 
 In terminal 2:
 ```
-cd MyWebHookFinal
-ngrok http 4040
+% cd MyWebHookFinal
+% ngrok http 4040
 ```
 
 In terminal 3:
 ```
-cd MyWebHookFinal
+% cd MyWebHookFinal
 
 # If you need to check existing Organization webhooks
 # You can delete existing ones if you wish
-ruby checkWebHooks.rb
+% ruby checkWebHooks.rb
 
 # Set up a new Organization webhook
-ruby setupWebHook.rb
+% ruby setupWebHook.rb
 ```
 
 ## Try the webhook
@@ -74,8 +74,8 @@ ruby setupWebHook.rb
 You can also apply the branch protection rules to the existing repositories.
 
 ```
-cd MyWebHookFinal
-ruby applyToExistingRepos.rb
+% cd MyWebHookFinal
+% ruby applyToExistingRepos.rb
 ```
 
 ## Reference
