@@ -20,7 +20,7 @@ There are various elements to enforce or increase the security, but the purpose 
 
 0. Latest MacOS is supposed to run the programs. The programs may work on Linux or other environment but not verified.
 1. Install [cURL](https://curl.se), [Ruby](https://www.ruby-lang.org/en/), and [Sinatra](https://sinatrarb.com), if any of them are missing.
-2. (Register and setup ngrok service)[https://dashboard.ngrok.com/get-started/setup]
+2. [Register and setup ngrok service](https://dashboard.ngrok.com/get-started/setup)
 3. [Create a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and store it in `~/personal_access_token.txt`
 4. Put the name of your Organization, which this webhook-triggerd app would apply to, into a file.
 `echo "<YOUR ORGANIZATION>" > ~/organization_name.txt`
