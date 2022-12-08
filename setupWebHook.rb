@@ -7,7 +7,7 @@ require 'json'
 #   https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 token = `cat ~/personal_access_token.txt`.chomp
-organization = "TokyoDesmo"
+organization = `cat ~/organization_name.txt`.chomp
 
 
 webhook_handler_port = 4567
@@ -16,15 +16,15 @@ ngrok_localhost_status_port = 4040
 
 curl_output = `curl -s http://localhost:#{webhook_handler_port}/`
 if curl_output.nil? || curl_output.empty? then
-    puts "start the webhook handler server"
+    puts "start the webhook handler server (in another terminal)"
     puts "% ruby WebHookReceiver.rb -p 4567 -o 0.0.0.0"
     exit
 end
 
 curl_output = `curl -s http://localhost:#{ngrok_localhost_status_port}/api/tunnels`
 if curl_output.nil? || curl_output.empty? then
-    puts "start the ngrok"
-    puts "% nohup ngrok http #{webhook_handler_port} &"
+    puts "start the ngrok (in another terminal)"
+    puts "% ngrok http #{webhook_handler_port}"
     exit
 end
 

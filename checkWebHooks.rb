@@ -8,7 +8,7 @@ require 'json'
 
 
 token = `cat ~/personal_access_token.txt`.chomp
-organization = "TokyoDesmo"
+organization = `cat ~/organization_name.txt`.chomp
 
 listCmd = "curl -s " \
           " -H \"Accept: application/vnd.github+json\"" \

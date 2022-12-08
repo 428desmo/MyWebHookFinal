@@ -8,9 +8,9 @@ require 'json'
 
 
 
-org = "TokyoDesmo"
-
 token = `cat ~/personal_access_token.txt`.chomp
+org = `cat ~/organization_name.txt`.chomp
+user_name = `cat ~/github_user_name.txt`.chomp
 rule_json = `cat ~/branch_protection_rules.json`.gsub(/(\r\n?|\n| )/,"")
 
 per_page = 10
@@ -23,7 +23,7 @@ puts "  N for No"
 puts "  S for Stop, which terminates the script."
 puts
 
-def apply_rule(token, rule_json, full_name, branch)
+def apply_rule(token, rule_json, full_name, branch, user_name)
   url="https://api.github.com/repos/#{full_name}/branches/#{branch}/protection"
 
   protectCmd = <<~EOS
@@ -38,8 +38,8 @@ def apply_rule(token, rule_json, full_name, branch)
   `#{protectCmd}`
 
   issueBody = "# Branch protection alert\n" \
-              "This branch is protected with the following configuration.\n" \
-              "Ask @428desmo for details.\n"
+              "The default branch is protected with the following configuration.\n" \
+              "Ask #{user_name} for details.\n"
   issueBody += "```\n" + `cat branch-protection-rule.json` + "\n```"
   
   issueHash = {"title":"Branch protection alert","body":"#{issueBody}"}
@@ -101,7 +101,7 @@ for i in 1..max_pages do
       case input
       when /^[yY]/
         puts "YES: Applying the branch protection"
-        apply_rule(token, rule_json, full_name, default_branch)
+        apply_rule(token, rule_json, full_name, default_branch, user_name)
         break
       when /^[nN]/, /^$/
         puts "NO: Not applying the branch protection"
