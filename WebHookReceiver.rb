@@ -57,7 +57,7 @@ post '/payload', provides: :json do
     url="https://api.github.com/repos/#{full_name}/branches/#{default_branch}/protection"
     puts "url=#{url}"
 
-    json = `cat ~/branch_protection_rules.json`.gsub(/(\r\n?|\n| )/,"")
+    json = `cat branch-protection-rules.json`.gsub(/(\r\n?|\n| )/,"")
 
     protectCmd = <<~EOS
       curl -s \
@@ -80,7 +80,7 @@ post '/payload', provides: :json do
     issueBody = "# Branch protection alert\n" \
                 "The default branch is protected with the following configuration.\n" \
                 "Ask #{user_name} for details.\n"
-    issueBody += "```\n" + `cat branch-protection-rule.json` + "\n```"
+    issueBody += "```\n" + `cat branch-protection-rules.json` + "\n```"
     
     issueHash = {"title":"Branch protection alert","body":"#{issueBody}"}
     issueJson = issueHash.to_json
